@@ -54,3 +54,25 @@ kepalaSekolah.umur = 51;
 
 const list_umur = [1, 2, 7, 5, 3, 10, 21, 7, 5];
 console.log(list_umur.sort((a, b) => b - a));
+
+// SOAL
+const list_umur_2 = [1, 2, 7, 5, 3, 10, 21, 7, 5];
+// bagaiamana cara ambil nilai terbesar kedua dari array
+// list_umur_2.sort((a, b) => a - b); // n^2
+const nilaiTerbesarKe2 = list_umur_2[list_umur_2.length - 2];
+// console.log(nilaiTerbesarKe2);
+
+// solve
+let nilaiTinggi = 0;
+let nilaiKedua = 0;
+
+for (let nilai of list_umur_2) { // O(1)
+  if (nilaiKedua < nilai && nilaiTinggi < nilai) {
+    nilaiKedua = nilaiTinggi;
+  }
+
+  if (nilaiTinggi < nilai) {
+    nilaiTinggi = nilai;
+  }
+}
+console.log(nilaiKedua);
