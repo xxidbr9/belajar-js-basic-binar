@@ -4,7 +4,9 @@ function sayHello() {
 }
 
 // variable
-const sayMyName = () => {};
+const sayMyName = () => {
+  return "Hello"
+};
 const sayMyName2 = () => ""; // short hand syntax => atau langsung return
 
 // argument
