@@ -79,4 +79,6 @@ function dalamLabda(nama) {
 func_1(dalamLabda)("nando")  // 
 
 const innerFunc = func_1(dalamLabda); // return callback;
-innerFunc("dimas")
+innerFunc("dimas");
+
+// memorization / cache system
