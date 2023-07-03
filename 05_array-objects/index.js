@@ -51,6 +51,7 @@ const kepalaSekolah = {
 };
 
 kepalaSekolah.umur = 51;
+const {asal} = kepalaSekolah
 
 const list_umur = [1, 2, 7, 5, 3, 10, 21, 7, 5];
 console.log(list_umur.sort((a, b) => b - a));
