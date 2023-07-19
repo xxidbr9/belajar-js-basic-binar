@@ -11,5 +11,6 @@ router.get(`/${prefixPath}/links/:name`, controller.linkTreeGetLinkByName);
 router.post(`/${prefixPath}/add`, controller.linkTreeAddNewLink);
 router.put(`/${prefixPath}/edit/:name`, controller.linkTreeEditLinkByName);
 router.delete(`/${prefixPath}/delete/:name`, controller.linkTreeDeleteByName);
+router.get(`/:name`, controller.linkTreeRedirectByName);
 
 module.exports = router;

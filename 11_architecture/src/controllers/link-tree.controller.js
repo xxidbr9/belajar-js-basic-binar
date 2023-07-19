@@ -4,7 +4,12 @@ const LinkTreeModel = require("../models/link-tree.model");
 const models = new LinkTreeModel();
 
 function linkTreeGetLinks(_, res) {
-  const data = models.findAll();
+  const link = models.findAll();
+  const data = {
+    link,
+    total: link.length
+  };
+
   return res.status(200).json(responseOk("Success get all link", data));
 }
 
@@ -42,11 +47,21 @@ function linkTreeEditLinkByName(req, res) {
 function linkTreeDeleteByName(req, res) {
   const name = req.params["name"];
   if (!name) return res.status(401).json(responseError("name is required"));
-  
+
   const data = models.delete(name);
   if (!data) return res.status(400).json(responseError("data is not found"));
 
   return res.status(200).json(responseOk(`Success delete ${name}`, data));
+}
+
+function linkTreeRedirectByName(req, res) {
+  const name = req.params["name"];
+  if (!name) return res.status(401).json(responseError("name is required"));
+
+  const data = models.findByName(name);
+  if (!data) return res.status(400).json(responseError("data is not found"));
+
+  return res.redirect(data.link);
 }
 
 module.exports = {
@@ -54,5 +69,6 @@ module.exports = {
   linkTreeGetLinkByName,
   linkTreeAddNewLink,
   linkTreeEditLinkByName,
-  linkTreeDeleteByName
+  linkTreeDeleteByName,
+  linkTreeRedirectByName
 };

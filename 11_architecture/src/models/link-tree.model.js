@@ -18,7 +18,9 @@ class LinkTreeModel {
   }
 
   findByName(name) {
-    return this.links.find(value => value.name === name);
+    const finnedLink = this.links.find(value => value.name === name);
+    if (!finnedLink) return;
+    return finnedLink;
   }
 
   delete(name) {
