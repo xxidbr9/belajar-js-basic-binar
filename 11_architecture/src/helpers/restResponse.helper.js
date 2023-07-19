@@ -5,9 +5,8 @@ function responseOk(msg, data) {
   };
 }
 
-function responseError(msg, err) {
+function responseError(err) {
   return {
-    message: msg,
     error: err
   };
 }

@@ -8,7 +8,9 @@ class LinkTreeModel {
   }
 
   insert(name, link) {
-    this.links.push({ name, link });
+    const newLink = { name, link };
+    this.links.push(newLink);
+    return newLink;
   }
 
   findAll() {
@@ -20,19 +22,24 @@ class LinkTreeModel {
   }
 
   delete(name) {
+    const deletedLink = this.links.find(value => value.name === name);
+    if (!deletedLink) return;
+
     this.links = this.links.filter(value => value.name !== name);
-    return;
+    return deletedLink;
   }
 
   edit(name, newName, newLink) {
     const finnedLinkIndex = this.links.findIndex(value => value.name === name);
     if (finnedLinkIndex < 0) return;
-
-    this.links[finnedLinkIndex] = {
-      name: newName || name,
-      link: newLink
+    const editedData = {
+      name: newName || this.links[finnedLinkIndex].name,
+      link: newLink || this.links[finnedLinkIndex].link
     };
-    return;
+
+    this.links[finnedLinkIndex] = editedData;
+
+    return editedData;
   }
 }
 

@@ -7,9 +7,9 @@ const prefixPath = "api/v1/link-tree";
 
 // register router
 router.get(`/${prefixPath}/links`, controller.linkTreeGetLinks);
-router.get(`/${prefixPath}/links/:name`);
-router.post(`/${prefixPath}/add`);
-router.put(`${prefixPath}/edit/:name`);
-router.delete(`${prefixPath}/edit/:name`);
+router.get(`/${prefixPath}/links/:name`, controller.linkTreeGetLinkByName);
+router.post(`/${prefixPath}/add`, controller.linkTreeAddNewLink);
+router.put(`/${prefixPath}/edit/:name`, controller.linkTreeEditLinkByName);
+router.delete(`/${prefixPath}/delete/:name`, controller.linkTreeDeleteByName);
 
 module.exports = router;
