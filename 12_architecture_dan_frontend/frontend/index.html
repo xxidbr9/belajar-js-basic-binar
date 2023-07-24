@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <div class="d-flex flex-column py-2 px-4 gap-2">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#addModal"
+      >
+        Tambah Link Baru
+      </button>
+      <div
+        class="modal fade"
+        id="addModal"
+        tabindex="-1"
+        aria-labelledby="addModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body d-flex flex-column" style="row-gap: 24px">
+              <div class="d-flex flex-column gap-1">
+                <label for="name" class="fw-bold">Nama Link</label>
+                <input
+                  id="form-name"
+                  name="name"
+                  class="form-control"
+                  placeholder="Contoh: binar"
+                />
+              </div>
+              <div class="d-flex flex-column gap-1">
+                <label for="link" class="fw-bold">Link Url</label>
+                <input
+                  id="form-link"
+                  name="link"
+                  class="form-control"
+                  placeholder="Contoh: https://google.com"
+                />
+              </div>
+              <div>
+                <button onclick="handleSend()" class="btn btn-primary">
+                  Simpan
+                </button>
+                <button data-bs-dismiss="modal" class="btn btn-ghost">
+                  Batal
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <main class="d-flex flex-column gap-2" id="content">
+        <!-- Card Start -->
+        <!-- Card end -->
+        <!-- Modal -->
+      </main>
+    </div>
+  </body>
+  <script src="./initialize.js"></script>
+  <script>
+    intializeApps();
+
+    const handleSend = async () => {
+      const formNameEl = document.getElementById("form-name");
+      const formLinkEl = document.getElementById("form-link");
+      const reqBody = {
+        name: formNameEl.value,
+        link: formLinkEl.value
+      };
+
+      const body = JSON.stringify(reqBody);
+
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+
+      const requestOptions = {
+        method: "POST",
+        headers,
+        body
+      };
+
+      const resp = await fetch(
+        "http://localhost:9000/api/v1/link-tree/add",
+        requestOptions
+      );
+      const respJson = await resp.json();
+
+      console.log(respJson.data);
+      const contentWrapper = document.querySelector("#content");
+
+      contentWrapper.innerHTML += generatorHtml(
+        respJson.data.name,
+        respJson.data.link
+      );
+
+      var addModal = new bootstrap.Modal(document.getElementById("addModal"), {
+        keyboard: false
+      });
+
+      addModal.hide();
+    };
+  </script>
+</html>
