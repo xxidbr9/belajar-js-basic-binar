@@ -1,5 +1,6 @@
 const express = require("express"); // ini ambil dari node modules
 const bodyParser = require("body-parser");
+const morgan = require("morgan");
 
 const app = express();
 const PORT = 9000;
@@ -10,6 +11,7 @@ const database = {
 };
 
 const rest_app = async () => {
+  app.use(morgan("dev"))
   app.use(bodyParser.json());
 
   app.get("/helo", (_, res) => {
@@ -71,11 +73,8 @@ const rest_app = async () => {
   */
   app.post("/add", (req, res) => {
     const bodyJson = req.body;
-    console.log({ bodyJson });
-
     database[bodyJson["url-name"]] = bodyJson["url-to"];
-
-    console.log(database);
+    
     return res.status(201).json({
       message: "success"
     });
@@ -85,8 +84,8 @@ const rest_app = async () => {
     const keyToDelete = req.params["key"];
 
     delete database[keyToDelete];
-
-    return res.status(200).json({
+    
+    return res.statusStatus(200).json({
       message: "success delete"
     });
   });
@@ -120,7 +119,7 @@ const rest_app = async () => {
   app.get("/to/:url_name",(req,res) =>{
     const urlName = req.params['url_name'];
 
-    return res.redirect(database[urlName])
+    return res.redirect(database[urlName]);
   })
 
   app.listen(PORT, () => {
