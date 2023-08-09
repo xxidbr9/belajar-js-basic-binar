@@ -1,0 +1,33 @@
+{
+  "name": "14_express-knex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=dev nodemon index.js",
+    "prod": "cross-env NODE_ENV=prod node index.js",
+    "dev:migrate": "cross-env NODE_ENV=dev knex migrate:latest",
+    "dev:rollback": "cross-env NODE_ENV=dev knex migrate:rollback"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "knex": "^2.5.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.11.2",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.1"
+  }
+}
