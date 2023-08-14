@@ -1,23 +1,19 @@
-const express = require("express");
-const knex = require("knex");
-const knexfile = require("../knexfile");
-
-const db = knex(knexfile["development"]);
+import express from "express";
+import mainRouter from "./router/index.js";
+import bodyParser from "body-parser";
+import cors from "cors";
 
 const app = express();
 
-const PORT = 9000;
+app.use(bodyParser({ extended: false }));
+app.use(cors("*"));
 
 app.get("/", (req, res) => {
   res.json({ hello: "world" });
 });
 
-app.get("/api/v1/blogs", async (req, res) => {
-  const blogs = await db("blogs").select("*");
-  console.log(blogs)
-  return res.json({ blogs: "hello blogs!" });
-});
+app.use(mainRouter);
 
-app.listen(PORT, () => {
-  console.log(`app run http://localhost:${PORT}`);
+app.listen(9000, () => {
+  console.log(`app run http://localhost:${9000}`);
 });

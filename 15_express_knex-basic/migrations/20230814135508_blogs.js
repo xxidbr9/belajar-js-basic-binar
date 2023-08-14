@@ -9,6 +9,7 @@ exports.up = function (knex) {
     table.uuid("id");
     table.string("title").notNullable();
     table.string("content").notNullable();
+    table.string("author").notNullable();
     table.timestamps(true, true)
   });
 };
