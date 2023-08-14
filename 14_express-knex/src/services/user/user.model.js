@@ -2,9 +2,10 @@ const db = require("../../config/db.config");
 const { v4 } = require("uuid");
 const bcrypt = require("bcrypt");
 const { ErrorServer } = require("../../utils/helpers/error.helper");
+const { USER_CONSTANTS } = require(".");
 
 class UserModel {
-  tableName = "users";
+  tableName = USER_CONSTANTS.TABLE_NAME;
   constructor() {}
 
   // save
