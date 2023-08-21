@@ -1,14 +1,18 @@
-const { USER_CONSTANTS } = require("../../services/user/index.js");
+const tableName = "users"
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable(
-    USER_CONSTANTS.TABLE_NAME,
-    require("../../services/user/user.schema.js")
-  );
+  return knex.schema.createTable(tableName, table => {
+    table.string("id").primary().unique();
+    table.string("fullname").notNullable();
+    table.string("email").unique().notNullable();
+    table.string("gender").notNullable();
+    table.string("password").notNullable();
+    table.timestamps(true, true);
+  });
 };
 
 /**
@@ -16,5 +20,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTableIfExists(USER_CONSTANTS.TABLE_NAME);
+  return knex.schema.dropTable(tableName);
 };
