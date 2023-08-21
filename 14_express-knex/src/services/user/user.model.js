@@ -1,7 +1,10 @@
 const db = require("../../config/db.config");
 const { v4 } = require("uuid");
 const bcrypt = require("bcrypt");
-const { ErrorServer } = require("../../utils/helpers/error.helper");
+const {
+  ErrorServer,
+  ErrorUserInput
+} = require("../../utils/helpers/error.helper");
 const { USER_CONSTANTS } = require(".");
 
 class UserModel {
@@ -109,6 +112,17 @@ class UserModel {
       throw new ErrorServer(e.detail);
     }
   }
+
+  // delete
+  async delete(id) {
+    try {
+      await db.table(this.tableName).where("id", id).del();
+    } catch (e) {
+      throw new ErrorServer(e.detail);
+    }
+  }
+
+  // update
 }
 
 module.exports = UserModel;
