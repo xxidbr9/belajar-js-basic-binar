@@ -67,14 +67,20 @@ class UserModel {
   // find
   async find(
     { limit, page } = { limit: 10, page: 1 },
-    { email, id, gender } = { email: "", id: "", gender: "" }
+    { email, id, gender, fullname } = {
+      email: "",
+      id: "",
+      gender: "",
+      fullname: ""
+    }
   ) {
     try {
       let query = db
         .select("id", "fullname", "email", "gender", "created_at", "updated_at")
         .table(this.tableName);
 
-      if (!!email) query = query.where("email", email);
+      if (!!fullname) query = query.whereLike("fullname", `%${fullname}%`);
+      if (!!email) query = query.whereLike("email", `%${email}%`);
       if (!!id) query = query.where("id", id);
       if (!!gender) query = query.where("gender", gender);
       if (limit > 0) query = query.limit(limit);

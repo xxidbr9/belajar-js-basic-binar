@@ -8,12 +8,18 @@ const getAllUsersController = async (req, res) => {
     const query = req.query;
     if (!!query.limit) filterReq.limit = Number(query.limit);
     if (!!query.page) filterReq.page = Number(query.page);
+    if (!!query.search) filterReq.search = query.search;
 
     const userModel = new UserModel();
-    const users = await userModel.find({
-      limit: filterReq.limit,
-      page: filterReq.page
-    });
+    const users = await userModel.find(
+      {
+        limit: filterReq.limit,
+        page: filterReq.page
+      },
+      {
+        fullname: filterReq.search
+      }
+    );
 
     return res.status(200).json(okResp("success get all user", users));
   } catch (e) {
