@@ -1,0 +1,10 @@
+.list_wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.item {
+  border: 1px solid #39393969;
+  padding: 20px 32px;
+}
