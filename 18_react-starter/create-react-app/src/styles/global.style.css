@@ -1,0 +1,11 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.app-style {
+  /* background-color: black; */
+  max-width: 500px;
+  margin: auto;
+}
