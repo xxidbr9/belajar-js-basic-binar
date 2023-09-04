@@ -27,3 +27,8 @@ module bundler adalah tools untuk membuild/merubah project (khususnya react) unt
 
 ### Selengkapnya pelajari di 
 [https://react.dev/learn](https://react.dev/learn)
+
+
+### Framework
+#### Next.js
+[Link](https://nextjs.org/)
