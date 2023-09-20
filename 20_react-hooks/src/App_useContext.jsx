@@ -42,6 +42,8 @@ const App_useContext_denganContext = () => {
   const userInfoState = { name: "Barnando" };
   const [userInfo, setUserInfo] = useState(userInfoState);
 
+  // Provider => component yang memiliki data aslinya
+  // component children yang ada di dalam Provider, itu semua bisa mengakses data dalam value dengan menggunakan useContext
   return (
     <UserContext.Provider value={userInfo}>
       <NavbarContext />
@@ -82,6 +84,6 @@ const NavbarContext = () => {
 };
 
 const ButtonProfileContext = () => {
-  const user = useContext(UserContext);
-  return <button>Hallo {user.name}</button>;
+  const {name} = useContext(UserContext);
+  return <button>Hallo {name}</button>;
 };
