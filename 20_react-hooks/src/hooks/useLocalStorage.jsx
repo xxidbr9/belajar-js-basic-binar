@@ -19,9 +19,10 @@ const useLocalStorage = (key, initialValue) => {
 
   const handleDeleteData = () => {
     localStorage.removeItem(key);
-    setData(null);
+    setData(initialValue);
   };
 
+  // dibuat array biar dia mirip useState biasa
   return [data, handleDataChange, handleDeleteData];
 };
 
