@@ -16,8 +16,12 @@ export const addBlog = async (req, res) => {
 
 export const deleteBlog = async (req, res) => {
   const { id } = req.params;
-  const blog = await blogModel.delete(id);
-  return res.json({ blog });
+  try {
+    const blog = await blogModel.delete(id);
+    return res.json({ blog });
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
 };
 
 export const editBlog = async (req, res) => {

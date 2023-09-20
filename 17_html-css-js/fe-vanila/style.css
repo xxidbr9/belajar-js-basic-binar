@@ -1,0 +1,9 @@
+.btn-merah {
+  background-color: rgb(255, 0, 0);
+  color: white;
+}
+
+.btn-merah:hover {
+  background-color: rgb(150, 0, 0);
+  color: white;
+}
