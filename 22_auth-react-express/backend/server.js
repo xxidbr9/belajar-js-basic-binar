@@ -14,7 +14,7 @@ const db = knex(knexfile["development"]);
 const JWT_KEY = "binar-jwt-key";
 
 app.use(bodyParser({ extended: true }));
-app.use(cors({ origin: ["*"] }));
+app.use(cors({ origin: "*" }));
 app.post("/api/v1/user/register", async (req, res) => {
   /* 
     email
