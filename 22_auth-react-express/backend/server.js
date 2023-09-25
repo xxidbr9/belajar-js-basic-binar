@@ -6,6 +6,7 @@ const app = express();
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
 
 const db = knex(knexfile["development"]);
 
@@ -13,7 +14,7 @@ const db = knex(knexfile["development"]);
 const JWT_KEY = "binar-jwt-key";
 
 app.use(bodyParser({ extended: true }));
-
+app.use(cors({ origin: ["*"] }));
 app.post("/api/v1/user/register", async (req, res) => {
   /* 
     email
@@ -83,7 +84,9 @@ const authMiddleware = async (req, res, next) => {
 app.get("/api/v1/user/profile", authMiddleware, async (req, res) => {
   const userJwt = req.local_user;
 
-  const user = await db("user_profiles").first("full_name").where("user_id", userJwt.id);
+  const user = await db("user_profiles")
+    .first("full_name")
+    .where("user_id", userJwt.id);
   return res.status(200).json({
     message: "success get user profile",
     data: {
