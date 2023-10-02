@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Button Component renders correctly 1`] = `
+<button
+  data-testid="button-test"
+>
+  Hello world
+</button>
+`;
