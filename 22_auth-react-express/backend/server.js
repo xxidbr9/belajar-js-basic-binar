@@ -81,7 +81,7 @@ const authMiddleware = async (req, res, next) => {
   next();
 };
 
-app.get("/api/v1/user/profile", authMiddleware, async (req, res) => {
+const loginController = async (req, res) => {
   const userJwt = req.local_user;
 
   const user = await db("user_profiles")
@@ -97,7 +97,8 @@ app.get("/api/v1/user/profile", authMiddleware, async (req, res) => {
       }
     }
   });
-});
+};
+app.get("/api/v1/user/profile", authMiddleware, loginController);
 
 app.listen(9000, () => {
   console.log("http://localhost:9000");
