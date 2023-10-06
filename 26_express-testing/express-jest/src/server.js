@@ -1,11 +1,11 @@
 const express = require("express");
 const { ping } = require("./controllers/user.controller");
 
-const runServer = () => {
+const runServer = PORT => {
   const app = express();
   app.get("/ping", ping);
 
-  return app.listen(9000, () => {
+  return app.listen(PORT || 9000, () => {
     console.log("app run");
   });
 };
