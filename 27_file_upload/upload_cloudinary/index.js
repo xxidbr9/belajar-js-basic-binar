@@ -5,10 +5,12 @@ const app = express();
 const { v2: cloudinary } = require("cloudinary");
 const multer = require("multer");
 
+require('dotenv').config()
+
 cloudinary.config({
   cloud_name: "xxidbr9",
-  api_key: "249821596393147",
-  api_secret: "l6wiGQvwssciZJXehd5cu4Jmh-0"
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 async function handleUpload(file, folder) {
