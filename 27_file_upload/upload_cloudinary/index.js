@@ -11,11 +11,11 @@ cloudinary.config({
   api_secret: "l6wiGQvwssciZJXehd5cu4Jmh-0"
 });
 
-async function handleUpload(file, filename) {
+async function handleUpload(file, folder) {
   const res = await cloudinary.uploader.upload(file, {
-    resource_type: "auto",
-    public_id: filename,
-    folder: "test"
+    folder: folder ?? "test",
+    resource_type: "auto"
+    // public_id: filename,
   });
   return res;
 }
@@ -34,7 +34,8 @@ app.post("/upload", (req, res) => {
       const b64 = Buffer.from(req.file.buffer).toString("base64"); // rubah file menjadi string
       const dataURI = "data:" + req.file.mimetype + ";base64," + b64;
       try {
-        const cldRes = await handleUpload(dataURI, req.file.originalname);
+        const cldRes = await handleUpload(dataURI, req.query["path"]);
+        // sambungin database disini
         res.json(cldRes);
       } catch (err) {
         res.send(err);
