@@ -8,7 +8,7 @@ export const Register = () => {
   const [fullname, setFullname] = useState("");
   const [resp, setResp] = useState({});
   const navigate = useNavigate();
-
+  useAlreadyLogin(true);
   const handleRegister = async () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -71,7 +71,7 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [resp, setResp] = useState({});
   const navigate = useNavigate();
-
+  useAlreadyLogin(true);
   const handleLogin = () => {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -165,10 +165,11 @@ export const Profile = () => {
 };
 
 // hooks check is login
-const useAlreadyLogin = () => {
+const useAlreadyLogin = (isAuthPage = false) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (isAuthPage) navigate("/");
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) navigate("/sign-in");
   }, []);
