@@ -1,5 +1,7 @@
 import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 const IndexPage = () => {
   const { data: session } = useSession();
@@ -15,6 +17,7 @@ const IndexPage = () => {
     <>
       Not signed in <br />
       <button onClick={() => signIn()}>Sign in</button>
+      <Link href={"/login"}>go to form</Link>
     </>
   );
 };

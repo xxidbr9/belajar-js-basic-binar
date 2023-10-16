@@ -21,14 +21,18 @@ export const authOptions = {
     CredentialsProvider({
       name: "Credentials",
       async authorize(req) {
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
+        console.log({ req });
         if (req.provider === "google-one-tap") {
-          console.log({ req });
           // PROSES MENGAMBIL DATA DARI BACKEND
-          const newUser = getFromGoogleOneTap(req.access_token);
+          const newUser = await getFromGoogleOneTap(req.access_token);
           return newUser;
-        } else {
+        } else if (req.provider === "form") {
+          const { username, password } = req;
+          const user = await getFromServer({ username, password });
+          console.log({ user });
           return user;
+        } else {
+          return null;
         }
       }
     })
@@ -57,5 +61,22 @@ async function getFromGoogleOneTap(accessToken) {
     id: userInfo.sub,
     name: userInfo.name,
     picture: userInfo.picture
+  };
+}
+
+// Get from Google One Tap
+async function getFromServer(data) {
+  const resp = await fetch(`http://localhost:9000/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+  const userInfo = await resp.json();
+  return {
+    email: userInfo.data.email,
+    id: userInfo.data.id,
+    name: userInfo.data.fullname
   };
 }
