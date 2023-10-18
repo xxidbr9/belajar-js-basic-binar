@@ -1,0 +1,13 @@
+{
+  "name": "22_auth-react-express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"cd backend && yarn dev \" \"cd frontend && yarn dev\"",
+    "prepare": "concurrently \"cd backend && yarn  \" \"cd frontend && yarn \""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  }
+}
