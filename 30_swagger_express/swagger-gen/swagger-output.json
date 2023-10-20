@@ -1,0 +1,495 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Binar: Intro to Swagger Documentation",
+    "version": "0.1.0",
+    "description": "This is a simple CRUD API application made with Express and documented with Swagger"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9000"
+    }
+  ],
+  "paths": {
+    "/api/v1/recipe": {
+      "get": {
+        "tags": [
+          "Recipe"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Recipe"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "recipe body.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "Mie goreng abang-abang"
+                },
+                "author": {
+                  "type": "string",
+                  "example": "Nando"
+                },
+                "ingredients": {
+                  "type": "array",
+                  "example": [
+                    "bawang",
+                    "mie",
+                    "telor",
+                    "cabai",
+                    "kecap"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "steps": {
+                  "type": "array",
+                  "example": [
+                    "Siapkan mie yang sudah matang",
+                    "Ulek bawang dan cabai",
+                    "goreng telur terlebih dahulu",
+                    "masukan bumbu tadi",
+                    "masukan mie",
+                    "tuangkan kecap secukupnya",
+                    "nasgor siap dihidangkan"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "duration": {
+                  "type": "number",
+                  "example": 600
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "d5fE_asz"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Mie goreng abang-abang"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "Nando"
+                    },
+                    "ingredients": {
+                      "type": "array",
+                      "example": [
+                        "bawang",
+                        "mie",
+                        "telor",
+                        "cabai",
+                        "kecap"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "steps": {
+                      "type": "array",
+                      "example": [
+                        "Siapkan mie yang sudah matang",
+                        "Ulek bawang dan cabai",
+                        "goreng telur terlebih dahulu",
+                        "masukan bumbu tadi",
+                        "masukan mie",
+                        "tuangkan kecap secukupnya",
+                        "nasgor siap dihidangkan"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "duration": {
+                      "type": "number",
+                      "example": 600
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2020-03-10T04:05:06.157Z"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "d5fE_asz"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Mie goreng abang-abang"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "Nando"
+                    },
+                    "ingredients": {
+                      "type": "array",
+                      "example": [
+                        "bawang",
+                        "mie",
+                        "telor",
+                        "cabai",
+                        "kecap"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "steps": {
+                      "type": "array",
+                      "example": [
+                        "Siapkan mie yang sudah matang",
+                        "Ulek bawang dan cabai",
+                        "goreng telur terlebih dahulu",
+                        "masukan bumbu tadi",
+                        "masukan mie",
+                        "tuangkan kecap secukupnya",
+                        "nasgor siap dihidangkan"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "duration": {
+                      "type": "number",
+                      "example": 600
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2020-03-10T04:05:06.157Z"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Gagal membuat recipe baru"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Gagal membuat recipe baru"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recipe/{id}": {
+      "get": {
+        "tags": [
+          "Recipe"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get recipe by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "d5fE_asz"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Mie goreng abang-abang"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "Nando"
+                    },
+                    "ingredients": {
+                      "type": "array",
+                      "example": [
+                        "bawang",
+                        "mie",
+                        "telor",
+                        "cabai",
+                        "kecap"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "steps": {
+                      "type": "array",
+                      "example": [
+                        "Siapkan mie yang sudah matang",
+                        "Ulek bawang dan cabai",
+                        "goreng telur terlebih dahulu",
+                        "masukan bumbu tadi",
+                        "masukan mie",
+                        "tuangkan kecap secukupnya",
+                        "nasgor siap dihidangkan"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "duration": {
+                      "type": "number",
+                      "example": 600
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2020-03-10T04:05:06.157Z"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "d5fE_asz"
+                    },
+                    "title": {
+                      "type": "string",
+                      "example": "Mie goreng abang-abang"
+                    },
+                    "author": {
+                      "type": "string",
+                      "example": "Nando"
+                    },
+                    "ingredients": {
+                      "type": "array",
+                      "example": [
+                        "bawang",
+                        "mie",
+                        "telor",
+                        "cabai",
+                        "kecap"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "steps": {
+                      "type": "array",
+                      "example": [
+                        "Siapkan mie yang sudah matang",
+                        "Ulek bawang dan cabai",
+                        "goreng telur terlebih dahulu",
+                        "masukan bumbu tadi",
+                        "masukan mie",
+                        "tuangkan kecap secukupnya",
+                        "nasgor siap dihidangkan"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "duration": {
+                      "type": "number",
+                      "example": 600
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2020-03-10T04:05:06.157Z"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "example": "d5fE_asz"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "Mie goreng abang-abang"
+                },
+                "author": {
+                  "type": "string",
+                  "example": "Nando"
+                },
+                "ingredients": {
+                  "type": "array",
+                  "example": [
+                    "bawang",
+                    "mie",
+                    "telor",
+                    "cabai",
+                    "kecap"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "steps": {
+                  "type": "array",
+                  "example": [
+                    "Siapkan mie yang sudah matang",
+                    "Ulek bawang dan cabai",
+                    "goreng telur terlebih dahulu",
+                    "masukan bumbu tadi",
+                    "masukan mie",
+                    "tuangkan kecap secukupnya",
+                    "nasgor siap dihidangkan"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "duration": {
+                  "type": "number",
+                  "example": 600
+                },
+                "createdAt": {
+                  "type": "string",
+                  "example": "2020-03-10T04:05:06.157Z"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Recipe"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Recipe"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
