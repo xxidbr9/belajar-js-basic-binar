@@ -153,7 +153,12 @@ router.delete(`${API_GROUP}/:id`, (req, res) => {
   }] 
   */
   const reqHeaders = req.headers;
-  console.log({ authorization: reqHeaders["authorization"] });
+  const arrayAuth = reqHeaders["authorization"].split(" "); // "Bearer hello-dunia"
+  if (arrayAuth[0] === "Bearer") { // Bearer ini hanya untuk kasih tau kalau token yang dibawa itu jenisnya jwt
+    console.log("ini token Bearer");
+  }
+  const token = arrayAuth[1];
+  console.log({ token });
 
   /* 
     #swagger.responses[204] = {
