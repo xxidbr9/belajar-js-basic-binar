@@ -35,7 +35,7 @@ const serverRunner = () => {
   app.use(morgan("dev"));
 
   // doc API
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }));
+  app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
 
   // main routers
   app.use(appRouters);

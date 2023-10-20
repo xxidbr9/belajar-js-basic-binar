@@ -11,49 +11,49 @@ const API_GROUP = "/api/v1/recipe";
  *   schemas:
  *     RecipeResponse:
  *       type: object
- *       required:
- *         - id
- *         - title
- *         - author
- *         - ingredients
- *         - steps
- *         - duration
- *         - createdAt
  *       properties:
- *         id:
+ *         message:
  *           type: string
- *           description: The auto-generated id of the recipe
- *         title:
- *           type: string
- *           description: The title of your recipe
- *         author:
- *           type: string
- *           description: The recioe author
- *         ingredients:
- *           type: array
- *           items:
- *             type: string
- *           description: The recipe ingredients need
- *         steps:
- *           type: array
- *           items:
- *             type: string
- *           description: The recipe step by step
- *         duration:
- *           type: number
- *           description: The recipe duration in second
- *         createdAt:
- *           type: string
- *           format: date
- *           description: The date the book was added
+ *         data: 
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: string
+ *               description: The auto-generated id of the recipe
+ *             title:
+ *               type: string
+ *               description: The title of your recipe
+ *             author:
+ *               type: string
+ *               description: The recioe author
+ *             ingredients:
+ *               type: array
+ *               items:
+ *                 type: string
+ *               description: The recipe ingredients need
+ *             steps:
+ *               type: array
+ *               items:
+ *                 type: string
+ *               description: The recipe step by step
+ *             duration:
+ *               type: number
+ *               description: The recipe duration in second
+ *             createdAt:
+ *               type: string
+ *               format: date
+ *               description: The date the book was added
+ * 
  *       example:
- *         id: d5fE_asz
- *         title: Nasi goreng rumahan
- *         author: Nando
- *         ingredients: ["bawang", "nasi", "telor", "cabai"]
- *         steps: ["Siapkan nasi", "Iris bawang dan cabai", "goreng telur terlebih dahulu", "masukan bumbu tadi", "masukan nasi", "nasgor siap dihidangkan"]
- *         duration: 600
- *         createdAt: 2020-03-10T04:05:06.157Z
+ *         message: Sukses post new recipe
+ *         data:
+ *           id: d5fE_asz
+ *           title: Nasi goreng rumahan
+ *           author: Nando
+ *           ingredients: ["bawang", "nasi", "telor", "cabai"]
+ *           steps: ["Siapkan nasi", "Iris bawang dan cabai", "goreng telur terlebih dahulu", "masukan bumbu tadi", "masukan nasi", "nasgor siap dihidangkan"]
+ *           duration: 600
+ *           createdAt: 2020-03-10T04:05:06.157Z
  */
 
 /**
@@ -61,7 +61,50 @@ const API_GROUP = "/api/v1/recipe";
  * tags:
  *   name: Recipe
  *   description: The recipe managing API
+ *
+ * /api/v1/recipe/{id}:
+ *   get:
+ *     tags: [Recipe]
+ *     summary: Get recipe by id
+ *     parameters:
+ *      - in: path
+ *        name: id   # Note the name is the same as in the path
+ *        required: true
+ *        type: string
+ *        minimum: 1
+ *        description: The user ID.
+ *     responses:
+ *       200:
+ *         description: get by id recipe.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/RecipeResponse'
+ *   put:
+ *     tags: [Recipe]
+ *     summary: edit recipe by id
+ *     parameters:
+ *      - in: path
+ *        name: id   # Note the name is the same as in the path
+ *        required: true
+ *        type: string
+ *        minimum: 1
+ *        description: The user ID.
+ * 
+ *   delete:
+ *     tags: [Recipe]
+ *     summary: delete recipe by id
+ *     parameters:
+ *      - in: path
+ *        name: id   # Note the name is the same as in the path
+ *        required: true
+ *        type: string
+ *        minimum: 1
+ *        description: The user ID.
  * /api/v1/recipe:
+ *   get:
+ *     tags: [Recipe]
+ *     summary: Get all recipes
  *   post:
  *     summary: Create a new Recipe
  *     tags: [Recipe]
@@ -112,7 +155,7 @@ const API_GROUP = "/api/v1/recipe";
  *               duration: 600
  *
  *     responses:
- *       200:
+ *       201:
  *         description: The created book.
  *         content:
  *           application/json:
