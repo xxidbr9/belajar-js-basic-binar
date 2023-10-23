@@ -1,4 +1,4 @@
-const runMigration = require("../scripts/run-migration");
+const { runMigration } = require("../scripts/run-migration");
 
 runMigration()
   .then(() => process.exit(0)) // Exit with a success code (0)

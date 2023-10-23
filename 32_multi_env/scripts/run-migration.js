@@ -6,9 +6,11 @@ async function runMigration() {
     console.log("Migrations completed successfully.");
   } catch (error) {
     console.error("Error running migrations:", error);
-  } finally {
-    await db.destroy();
   }
 }
 
-module.exports = runMigration;
+async function rollbackMigration() {
+  await db.migrate.rollback();
+}
+
+module.exports = { runMigration, rollbackMigration };

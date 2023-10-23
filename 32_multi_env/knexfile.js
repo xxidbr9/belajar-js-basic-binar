@@ -12,6 +12,7 @@ module.exports = {
   testing: {
     client: "sqlite3",
     connection: ":memory:",
+    useNullAsDefault: true,
     pool: {
       min: 1,
       max: 1
