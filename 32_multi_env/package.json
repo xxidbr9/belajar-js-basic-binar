@@ -1,0 +1,22 @@
+{
+  "name": "32_multi_env",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env NODE_ENV=testing node ./",
+    "migrate:testing": "cross-env NODE_ENV=testing node ./cli/migrate.js",
+    "migrate:dev": "cross-env NODE_ENV=development node ./cli/migrate.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "knex": "^3.0.1",
+    "pg": "^8.11.3",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
