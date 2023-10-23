@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  account_svc_1:
+    build:
+      context: ./account_service_1
+    # ports:
+    #   - "3001:3001"
+  account_svc_2:
+    build:
+      context: ./account_service_2
+    # ports:
+    #   - "3001:3001"
+  profile_svc:
+    build:
+      context: ./profile_service
+    # ports:
+    #   - "3002:3002"
+  nginx:
+    restart: always
+    build:
+      context: ./config
+    ports:
+      - "80:80"
