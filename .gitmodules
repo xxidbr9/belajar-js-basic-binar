@@ -1,0 +1,3 @@
+[submodule "33_deployment_and_cicd/cicd-binar"]
+	path = 33_deployment_and_cicd/cicd-binar
+	url = https://github.com/private-wave/cicd-binar.git
